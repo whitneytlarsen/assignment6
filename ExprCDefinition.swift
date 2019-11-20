@@ -3,22 +3,37 @@
 //
 
 import Foundation
-import RGMEValues
+
+public class ExprC{}
 
 //definitions for ExprC
-struct numC {
+public class numC : ExprC {
+    init (fromV: numV){
+        v = fromV
+    }
     var v: numV
 }
-struct idC {
+public class idC : ExprC {
+    init (fromV: String){
+        v = fromV
+    }
     var v: String
 }
-struct ifC {
+public class ifC : ExprC {
+    init (fromTest: ExprC, fromT: ExprC, fromE: ExprC) {
+        test = fromTest
+        t = fromT
+        e = fromE
+    }
     var test: ExprC
     var t: ExprC
     var e: ExprC
 }
-struct lamC {
-    var args: Array<ExprC>
+public class lamC : ExprC {
+    init (fromArgs: Array<ExprC>, fromBody: ExprC) {
+        args = fromArgs
+        body = fromBody
+    }
+    var args: Array<ExprC> = []
     var body: ExprC
 }
-typealias ExprC = numC & idC & ifC & lamC
